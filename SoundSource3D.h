@@ -56,17 +56,6 @@ public:
     void SetFarDistance(float distance);
     /// Set inner angle in degrees. Inside this angle sound will not be attenuated.By default 360, meaning direction never has an effect.
     void SetRolloffFactor(float factor);
-	/*// Set panning speed.
-	void SetPanningSpeed(float panningSpeed);
-	/// Set maximum panning;
-	void SetMaxPan(float maxPan);
-	
-	/// Return panning max speed.
-	float GetPanningSpeed() const { return panningSpeed_; }
-
-	/// Return max panning;
-	float GetMaxPan() const { return maxPan_;  }
-	*/
     /// Return near distance.
     float GetNearDistance() const { return nearDistance_; }
 
@@ -81,13 +70,9 @@ protected:
     float nearDistance_;
     /// Far distance.
     float farDistance_;
-    /// Inner angle for directional attenuation.
     /// Rolloff power factor.
     float rolloffFactor_;
-	/// Ammount panning can change in one frame.
-	//float panningSpeed_;
-	/// Maximum panning.
-	//float maxPan_;
+
 };
 
 }

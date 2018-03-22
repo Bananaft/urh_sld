@@ -112,7 +112,7 @@ SoundSource3D::SoundSource3D(Context* context) :
     rolloffFactor_(DEFAULT_ROLLOFF)
 
 {
-	//URHO3D_LOGINFO("AAA_SoundSource3D");
+	
     // Start from zero volume until attenuation properly calculated
     attenuation_ = 0.0f;
 }
@@ -147,7 +147,7 @@ void SoundSource3D::DrawDebugGeometry(DebugRenderer* debug, bool depthTest)
 
 void SoundSource3D::Play(Sound* sound)
 {
-	//URHO3D_LOGINFO("AAA_SoundSource3DPlay");
+	
 	MarkNetworkUpdate();
 	if (sound != NULL)
 	{
@@ -188,9 +188,9 @@ void SoundSource3D::Update(float timeStep)
 	SoLoud::Soloud* soloud = audio_->GetSoLoud();
 	Vector3 p = node_->GetWorldPosition();
 	soloud->set3dSourcePosition(handle_, p.x_, p.y_, p.z_);
-	//URHO3D_LOGINFO("AAA_SoundSource3DUpdate " + String(handle_));
+	
 	SoundSource::Update(timeStep);
-//	soloud->setVolume(handle_, 0.);
+
 }
 
 void SoundSource3D::SetDistanceAttenuation(float nearDistance, float farDistance, float rolloffFactor)

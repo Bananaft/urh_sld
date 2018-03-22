@@ -61,7 +61,7 @@ Audio::Audio(Context* context) :
     sampleSize_(0),
     playing_(false)
 {
-	//URHO3D_LOGINFO("AAA_Audio()");
+	
     // Set the master to the default value
     masterGain_[SOUND_MASTER_HASH] = 1.0f;
 
@@ -81,12 +81,10 @@ Audio::~Audio()
 
 bool Audio::SetMode(int bufferLengthMSec, int mixRate, bool stereo, bool interpolation)
 {
-	//URHO3D_LOGINFO("AAA_AudioSetMode");
+
 	// initialize SoLoud.
 	int rslt = 314159;
-	//soloud_ = SoLoud::Soloud.new;
 
-	//rslt = soloud_->init();
 	soloud_.setMaxActiveVoiceCount(64);
 	rslt = soloud_.init();
 	
@@ -105,7 +103,7 @@ void Audio::Update(float timeStep)
 
 bool Audio::Play()
 {
-//	URHO3D_LOGINFO("AAA_AudioPLAY");
+
 	if (playing_)
         return true;
 
@@ -247,7 +245,7 @@ void Audio::Release()
 void Audio::UpdateInternal(float timeStep)
 {
     URHO3D_PROFILE(UpdateAudio);
-	//URHO3D_LOGINFO("AAA_UpdateAudio");
+
     // Update in reverse order, because sound sources might remove themselves
     for (unsigned i = soundSources_.Size() - 1; i < soundSources_.Size(); --i)
     {
@@ -265,7 +263,7 @@ void Audio::UpdateInternal(float timeStep)
 	
 	if (listener_!=NULL)
 	{
-		//URHO3D_LOGINFO("AAA listener pos upd");
+
 		Node* LNode = listener_->GetNode();
 		Vector3 p = LNode->GetWorldPosition();
 		Quaternion q = LNode->GetWorldRotation();

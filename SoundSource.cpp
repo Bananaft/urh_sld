@@ -41,61 +41,6 @@
 namespace Urho3D
 {
 
-#define INC_POS_LOOPED() \
-    pos += intAdd; \
-    fractPos += fractAdd; \
-    if (fractPos > 65535) \
-    { \
-        fractPos &= 65535; \
-        ++pos; \
-    } \
-    while (pos >= end) \
-        pos -= (end - repeat); \
-
-#define INC_POS_ONESHOT() \
-    pos += intAdd; \
-    fractPos += fractAdd; \
-    if (fractPos > 65535) \
-    { \
-        fractPos &= 65535; \
-        ++pos; \
-    } \
-    if (pos >= end) \
-    { \
-        pos = 0; \
-        break; \
-    } \
-
-#define INC_POS_STEREO_LOOPED() \
-    pos += (intAdd << 1); \
-    fractPos += fractAdd; \
-    if (fractPos > 65535) \
-    { \
-        fractPos &= 65535; \
-        pos += 2; \
-    } \
-    while (pos >= end) \
-        pos -= (end - repeat); \
-
-#define INC_POS_STEREO_ONESHOT() \
-    pos += (intAdd << 1); \
-    fractPos += fractAdd; \
-    if (fractPos > 65535) \
-    { \
-        fractPos &= 65535; \
-        pos += 2; \
-    } \
-    if (pos >= end) \
-    { \
-        pos = 0; \
-        break; \
-    } \
-
-#define GET_IP_SAMPLE() (((((int)pos[1] - (int)pos[0]) * fractPos) / 65536) + (int)pos[0])
-
-#define GET_IP_SAMPLE_LEFT() (((((int)pos[2] - (int)pos[0]) * fractPos) / 65536) + (int)pos[0])
-
-#define GET_IP_SAMPLE_RIGHT() (((((int)pos[3] - (int)pos[1]) * fractPos) / 65536) + (int)pos[1])
 
 static const float AUTOREMOVE_DELAY = 0.25f;
 
@@ -158,38 +103,6 @@ void SoundSource::RegisterObject(Context* context)
 
 void SoundSource::Play(Sound* sound)
 {
-   /* if (!audio_)
-        return;
-
-    // If no frequency set yet, set from the sound's default
-    if (frequency_ == 0.0f && sound)
-        SetFrequency(sound->GetFrequency());
-
-    // If sound source is currently playing, have to lock the audio mutex
-    if (position_)
-    {
-        MutexLock lock(audio_->GetMutex());
-        PlayLockless(sound);
-    }
-    else
-        PlayLockless(sound);
-
-    // Forget the Sound & Is Playing attribute previous values so that they will be sent again, triggering
-    // the sound correctly on network clients even after the initial playback
-    if (networkState_ && networkState_->attributes_ && networkState_->previousValues_.Size())
-    {
-        for (unsigned i = 1; i < networkState_->previousValues_.Size(); ++i)
-        {
-            // The indexing is different for SoundSource & SoundSource3D, as SoundSource3D removes two attributes,
-            // so go by attribute types
-            VariantType type = networkState_->attributes_->At(i).type_;
-            if (type == VAR_RESOURCEREF || type == VAR_BOOL)
-                networkState_->previousValues_[i] = Variant::EMPTY;
-        }
-    }
-
-  	*/
-	//URHO3D_LOGINFO("AAA_SoundSource_Play");
 	MarkNetworkUpdate();
 	if (sound!=NULL)
 	{
@@ -353,10 +266,7 @@ ResourceRef SoundSource::GetSoundAttr() const
 
 int SoundSource::GetPositionAttr() const
 {
- /*   if (sound_ && position_)
-        return (int)(GetPlayPosition() - sound_->GetStart());
-    else
-	*/
+
         return 0;
 
 }

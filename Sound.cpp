@@ -56,7 +56,7 @@ void Sound::RegisterObject(Context* context)
 bool Sound::BeginLoad(Deserializer& source)
 {
     URHO3D_PROFILE(LoadSound);
-	//URHO3D_LOGINFO("AAA_SoundLoad");
+	
     bool success;
    
 	int rslt;
@@ -101,7 +101,7 @@ void Sound::LoadParameters()
 
 SoLoud::Wav* Sound::GetWav()
 {
-	//URHO3D_LOGINFO("AAA_SoundGetWav");
+	
 	return &wav_;
 }
 
